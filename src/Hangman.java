@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Hangman {
     public static void main(String[] args) {
-        char[] password = {'b', 'o', 'b'};
+        char[] password = {'s', 'z', 'u', 'f', 'l', 'a', 'd', 'a'};
         char[] playerGuesses = {};
         int lives = 6;
 
@@ -22,6 +22,7 @@ public class Hangman {
             for (int i = 0; i < password.length; i++) {
                 if (userInput == password[i]) {
                     isLetterInPassword = true;
+                    break;
                 }
             }
             if (!isLetterInPassword) {
@@ -58,15 +59,16 @@ public class Hangman {
 
     /**
      * Funkcja rysująca wisielca
+     *
      * @param lives - ilość pozostałych żyć
      */
     public static void drawHangman(int lives) {
         char[][] emptyBoard = {
-                {' ',' ',' ',' '},
-                {' ',' ',' ',' '},
-                {' ',' ',' ',' '},
-                {' ',' ',' ',' '},
-                {' ',' ',' ',' '}
+                {' ', ' ', ' ', ' '},
+                {' ', ' ', ' ', ' '},
+                {' ', ' ', ' ', ' '},
+                {' ', ' ', ' ', ' '},
+                {' ', ' ', ' ', ' '}
         };
 
         if (lives < 6) {
@@ -101,6 +103,7 @@ public class Hangman {
 
     /**
      * Funkcja wyświetlająca litery dodając przecinek między nimi
+     *
      * @param letters tablica znaków do wyświetlenia
      */
     public static void displayUsedLetters(char[] letters) {
@@ -116,8 +119,9 @@ public class Hangman {
 
     /**
      * Funkcja wyświetlająca szukane hasło zastępując nieznane litery znakiem '_'
+     *
      * @param password tablica znaków
-     * @param guesses tablica znaków zawierająca użyte litery
+     * @param guesses  tablica znaków zawierająca użyte litery
      */
     public static void displayBlankedPassword(char[] password, char[] guesses) {
         char[] passwordBlanked = new char[2 * password.length - 1];
@@ -135,10 +139,11 @@ public class Hangman {
             for (int j = 0; j < guesses.length; j++) {
                 if (guesses[j] == password[i]) {
                     isGuessed = true; // if guessed letter is in password set flag to true
+                    break;
                 }
             }
             if (isGuessed) { // if is in password show that letter
-                passwordBlanked[2*i] = password[i];
+                passwordBlanked[2 * i] = password[i];
             }
         }
         System.out.print("hasło: ");
@@ -147,7 +152,8 @@ public class Hangman {
 
     /**
      * Funkcja sprawdzająca, czy wszystkie litery w haśle zostały zgadnięte
-     * @param password litery hasła
+     *
+     * @param password    litery hasła
      * @param usedLetters już użyte litery
      */
     public static boolean isPasswordGuessed(char[] password, char[] usedLetters) {
@@ -157,6 +163,7 @@ public class Hangman {
             for (int j = 0; j < usedLetters.length; j++) {
                 if (password[i] == usedLetters[j]) {
                     isLetterGuessed = true;
+                    break;
                 }
             }
             if (!isLetterGuessed) { // jeżeli nie ma litery hasła w użytych literkach zakończ funkcję
